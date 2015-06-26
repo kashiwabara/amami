@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">奄美写真ランキング
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    <% i = 0 %>
+    <% @pictures.each do |picture| %>
+        <% i += 1 %>
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <%= image_tag picture.photo.url(:large), :class => 'img-responsive' %>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>No.<%= i %> <%= picture.name%>さん</h3>
+                <h4><%= picture.title%></h4>
+                <p><%= picture.description%></p>
+                <a style="background-color:white;" href="/pictures/<%= picture.id%>/vote" data-method="put" rel="nofollow">
+                    <i style="color:yellow;" class="fa fa-star fa-2x"></i>
+                </a>
+                    <label style="font-size:x-large;"><%= picture.like %></label>
+            </div>
+        </div>
+        <hr>
+        <!-- /.row -->
+    <% end %>
+
+
+

@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<p class="bg-success" id="notice"><%= notice %></p>
+<p class="bg-danger" id="alert"><%= alert %></p>
 
 
 
@@ -17,18 +18,17 @@
         <!-- Project One -->
         <div class="row">
             <div class="col-md-7">
-                <a href="#">
-                    <%= image_tag picture.photo.url(:large), :class => 'img-responsive' %>
-                </a>
+                <%= image_tag picture.photo.url(:large), :class => 'img-responsive' %>
             </div>
             <div class="col-md-5">
-                <h3>No.<%= i %> <%= picture.name%>さん</h3>
-                <h4><%= picture.title%></h4>
+                <h3>No.<%= i %> 『<%= picture.title%>』</h3>
                 <p><%= picture.description%></p>
-                <a style="background-color:white;" href="/pictures/<%= picture.id%>/vote" data-method="put" rel="nofollow">
+                <p class="text-primary">by <%= picture.name%>さん</p>
                     <i style="color:yellow;" class="fa fa-star fa-2x"></i>
-                </a>
                     <label style="font-size:x-large;"><%= picture.like %></label>
+                &nbsp;&nbsp;<a class="btn btn-xs btn-primary" style="color:white;" href="/pictures/<%= picture.id%>/vote" data-method="put" rel="nofollow">
+                    投票する
+                </a>
             </div>
         </div>
         <hr>

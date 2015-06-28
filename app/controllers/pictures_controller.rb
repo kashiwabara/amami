@@ -28,7 +28,8 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to :action => "index" }
+        
+        format.html { redirect_to pictures_url, notice: "投稿が完了しました" }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new }
@@ -66,14 +67,19 @@ class PicturesController < ApplicationController
     id = params[:id]
     key = "vote_"+ id
 
+    
+    
     if cookies[key] == "1"
+        alert = '1枚の写真には1回しか投票できません'
+        redirect_to pictures_url, alert: alert
     else
+        notice = @picture.title + 'に投票しました'
+        redirect_to pictures_url, notice: notice
         cookies[key] = 1
         @picture.increment(:like)
         @picture.save
     end
 
-    redirect_to :action => "index"
       
   end 
 
